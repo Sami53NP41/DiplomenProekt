@@ -1,0 +1,19 @@
+﻿@*
+    /*
+    Add temp of last record
+    add 2 btns Heat and Cool
+    (setting the temperature with the 2 btns)
+    */
+*@
+@model DiplomenProekt.Models.TempReadingViewModel
+<h1> Here is your temperature control panel:</h1>
+<hr />
+<p />
+<form>
+    <h4>Temperature of save here is the last recorded temperature: @Model.ReadedTemper</h4>
+    <h5>Recorded at: @Model.RecordTime</h5>
+    <button> Heat</button>
+    <button>Cool </button>
+</form>
+
+

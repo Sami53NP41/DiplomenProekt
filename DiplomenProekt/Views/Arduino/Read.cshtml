@@ -1,0 +1,18 @@
+﻿@model IEnumerable<DiplomenProekt.Models.TempReadingViewModel>
+<h1> Here is your last saves:</h1>
+<hr/>
+<table class="table table-hover">
+    <tr>
+        <th>The Id of the record</th>
+        <th>Temperature of save</th>
+        <th>Recorded time of save</th>
+    </tr
+    @foreach(var item in Model)
+    {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.ReadedTemper</td>
+        <td>@item.RecordTime</td>
+    </tr>
+    }
+</table>
