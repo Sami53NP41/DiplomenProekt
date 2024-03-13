@@ -30,11 +30,8 @@ namespace DiplomenProekt.Controllers
             var tmpRng = new TempReading
             {
                 RecTime = DateTime.UtcNow,
-                ReadedTemp = arduino,
+                ReadedTemp = arduino
             };
-
-            arduinoService.RecordNewTemperature(tmpRng);
-
             db.Add(tmpRng);
             db.SaveChanges();
             return Ok();
