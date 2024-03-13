@@ -12,8 +12,23 @@
 <form>
     <h4>Temperature of save here is the last recorded temperature: @Model.ReadedTemper</h4>
     <h5>Recorded at: @Model.RecordTime</h5>
-    <button> Heat</button>
-    <button>Cool </button>
+    <button onclick="heat"> Heat</button>
+    <button onclick="cool">Cool </button>
 </form>
 
+
+<script type="text/javascript">
+   function heat() {
+        $.ajax({
+            type: "GET",
+            url: "/Arduino/Heat",           
+        });
+
+
+          function cool() {
+        $.ajax({
+            type: "GET",
+            url: "/Arduino/Cool",           
+        });
+        <script>
 

@@ -1,3 +1,4 @@
+using DiplomenProekt;
 using DiplomenProekt.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IArduinoService, Arduino_Service>();
+
 
 var app = builder.Build();
 

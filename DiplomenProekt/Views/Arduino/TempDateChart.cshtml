@@ -20,9 +20,9 @@
         });
         function OnSuccess(data) { 
             const barChart = document.getElementById('barChart');
-            var _data = data;
-            var _labels = _data[0];
-            var _Date = _data[1];
+            // var _data = ;//[{ReadedTemp:34,RecTime:13:43}]
+            var _labels = data["label"];
+            var _Date = data["temp"];
             var colors = ["Blue", "Blue", "Blue", "Blue", "Blue", "Blue"];
 
             new Chart(barChart,
