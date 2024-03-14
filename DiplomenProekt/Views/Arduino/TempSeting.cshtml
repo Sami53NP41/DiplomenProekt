@@ -5,30 +5,27 @@
     (setting the temperature with the 2 btns)
     */
 *@
-@model DiplomenProekt.Models.TempReadingViewModel
+@model TempReadingViewModel
 <h1> Here is your temperature control panel:</h1>
 <hr />
-<p />
-<form>
     <h4>Temperature of save here is the last recorded temperature: @Model.ReadedTemper</h4>
     <h5>Recorded at: @Model.RecordTime</h5>
-    <button onclick="heat"> Heat</button>
-    <button onclick="cool">Cool </button>
-</form>
+    <button OnClick="Heat()"> Heat</button>
+    <button onclick="Cool()"">Cool </button>
 
 
 <script type="text/javascript">
-   function heat() {
+   function Heat() {
         $.ajax({
             type: "GET",
             url: "/Arduino/Heat",           
         });
 
 
-          function cool() {
+          function Cool() {
         $.ajax({
             type: "GET",
             url: "/Arduino/Cool",           
         });
-        <script>
+     <script>
 

@@ -14,22 +14,7 @@ namespace DiplomenProekt
 
         }
 
-        public List<TempReadingViewModel> GetLastNReadingsAsVies(int count)
-        {
-            //var result = db.TempReadings.OrderByDescending(x => x.Id).Select(a => new TempReadingViewModel
-            //{
-            //    Id = a.Id,
-            //    ReadedTemper = a.ReadedTemp,
-            //    RecordTime = a.RecTime
-            //}).Take(count).ToList();
-
-            return GetTemperaturesOfLastNReadings(count).Select(a => new TempReadingViewModel
-            {
-                Id = a.Id,
-                ReadedTemper = a.ReadedTemp,
-                RecordTime = a.RecTime
-            }).ToList();
-        }
+    
 
         public List<TempReading> GetTemperaturesOfLastNReadings(int count)
         {

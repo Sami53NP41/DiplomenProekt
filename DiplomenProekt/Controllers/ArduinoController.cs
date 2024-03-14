@@ -36,31 +36,29 @@ namespace DiplomenProekt.Controllers
             db.SaveChanges();
             return Ok();
         }
-        public IActionResult Read() => View(arduinoService.GetLastNReadingsAsVies(7));
-        //{
-        //    //var arduino = arduinoService.GetTemperaturesOfLastNReadings(7);           
-            
-        //    //var model = arduino.Select(a => new TempReadingViewModel
-        //    //{
-        //    //    Id = a.Id,
-        //    //    ReadedTemper = a.ReadedTemp,
-        //    //    RecordTime = a.RecTime
-        //    //}).ToList();
+        public IActionResult Read()
+        {
+         var arduino = arduinoService.GetTemperaturesOfLastNReadings(7);
 
-        //    List<TempReadingViewModel> temperatures = arduinoService.GetLastNReadingsAsVies(7);
-
-        //    return View(temperatures);
-        //}
+            var model = arduino.Select(a => new TempReadingViewModel
+            {
+                Id = a.Id,
+                ReadedTemper = a.ReadedTemp,
+                RecordTime = a.RecTime
+            }).ToList();
+                return View(model);
+        }
 
 
-        public IActionResult TempDateChart()
+            public IActionResult TempDateChart()
         {
             return View();
         }
 
         public void Heat()
         {
-
+            int a = 1;
+            
         } 
         public void Cool()
         {
@@ -81,12 +79,12 @@ namespace DiplomenProekt.Controllers
         //setting the microcontroller turn the cool/heat relays
         public IActionResult TempSeting()
         {
-            var tmpset = db.TempReadings.OrderByDescending(x => x.Id).Take(1);
+            var tmpset = db.TempReadings.OrderByDescending(x => x.Id);
             var model = tmpset.Select(t => new TempReadingViewModel
             {
                 ReadedTemper = t.ReadedTemp,
                 RecordTime = t.RecTime
-            });
+            }).FirstOrDefault();    
             return View(model);
 
         }
