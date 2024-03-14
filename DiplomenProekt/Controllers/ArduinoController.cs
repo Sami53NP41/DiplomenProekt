@@ -38,7 +38,7 @@ namespace DiplomenProekt.Controllers
         }
         public IActionResult Read()
         {
-         var arduino = arduinoService.GetTemperaturesOfLastNReadings(7);
+            var arduino = arduinoService.GetTemperaturesOfLastNReadings(7);
 
             var model = arduino.Select(a => new TempReadingViewModel
             {
@@ -46,20 +46,21 @@ namespace DiplomenProekt.Controllers
                 ReadedTemper = a.ReadedTemp,
                 RecordTime = a.RecTime
             }).ToList();
-                return View(model);
+            return View(model);
         }
 
 
-            public IActionResult TempDateChart()
+        public IActionResult TempDateChart()
         {
             return View();
         }
-
+        [HttpPost]
         public void Heat()
         {
             int a = 1;
             
-        } 
+        }
+        [HttpGet]
         public void Cool()
         {
             

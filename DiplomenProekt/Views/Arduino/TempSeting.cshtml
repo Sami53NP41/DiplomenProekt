@@ -6,26 +6,28 @@
     */
 *@
 @model TempReadingViewModel
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+</head>
+<div class="container-xl">100% wide until extra large breakpoint
 <h1> Here is your temperature control panel:</h1>
 <hr />
     <h4>Temperature of save here is the last recorded temperature: @Model.ReadedTemper</h4>
     <h5>Recorded at: @Model.RecordTime</h5>
-    <button OnClick="Heat()"> Heat</button>
-    <button onclick="Cool()"">Cool </button>
+    <button OnClick="Heat()" type="button" class="btn btn-danger">Heat </button>
+    <button type="button" class="btn btn-primary" OnClick="Cool()">Cool </button>
 
-
+</div>
 <script type="text/javascript">
-   function Heat() {
-        $.ajax({
-            type: "GET",
-            url: "/Arduino/Heat",           
-        });
-
-
+    function Heat() {
+        console.log("Heat function called");
+    }
+           
           function Cool() {
         $.ajax({
             type: "GET",
-            url: "/Arduino/Cool",           
+            url: "Arduino/Cool"           
         });
-     <script>
+</script>
 
