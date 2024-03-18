@@ -55,10 +55,9 @@ namespace DiplomenProekt.Controllers
             return View();
         }
         [HttpPost]
-        public void Heat()
+        public IActionResult HeatButton()
         {
-            int a = 1;
-            
+            return View();
         }
         [HttpGet]
         public void Cool()

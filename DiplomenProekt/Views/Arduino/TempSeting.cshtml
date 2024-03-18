@@ -15,7 +15,7 @@
 <hr />
     <h4>Temperature of save here is the last recorded temperature: @Model.ReadedTemper</h4>
     <h5>Recorded at: @Model.RecordTime</h5>
-    <button OnClick="Heat()" type="button" class="btn btn-danger">Heat </button>
+    <button  asp-controller="Arduino" asp-action="HeatButton" type="button" class="btn btn-danger">Heat </button>
     <button type="button" class="btn btn-primary" OnClick="Cool()">Cool </button>
 
 </div>
