@@ -14,5 +14,16 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #c3c3c3;
+}
+hr {
+    margin:auto;
+    background-color: #7092be;
+}
+footer {
+    background-color: #7092be;
+}
+header {
+    background-color: #7092be;
 }
