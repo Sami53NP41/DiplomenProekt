@@ -17,12 +17,7 @@ namespace DiplomenProekt.Controllers
             this.db = db;
             this.webHostEnvironment = webHostEnvironment;
         }
-        public IActionResult Create()
-        {
-            var model = new TempReadingViewModel();
-            return Ok();
-        }
-
+        
         [HttpGet]
         public IActionResult Create(double arduino)
         {
@@ -48,35 +43,28 @@ namespace DiplomenProekt.Controllers
             }).ToList();
             return View(model);
         }
-
-
         public IActionResult TempDateChart()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult HeatButton()
-        {
-            return View();
-        }
-        [HttpGet]
-        public void Cool()
-        {
-            
-        }
 
-
+        public IActionResult HeatButton(int data)
+        {
+            data=1;
+            return Ok(data);
+        }
+        public IActionResult CoolButton(int data)
+        {
+            data = 0;
+            return Ok();
+        }
         public string GetChartData()
         {
-            //pogledni formata
+            
             List<string> label = db.TempReadings.OrderByDescending(x => x.RecTime).Take(7).Select(r => r.RecTime.ToString("dd.MM.yyyy [HH:mm]")).ToList();
             List<double> temp = db.TempReadings.OrderByDescending(x => x.RecTime).Take(7).Select(r => r.ReadedTemp).ToList();
              return JsonConvert.SerializeObject(new { label, temp });
-            //data.Add(label);
-            //data.Add(Temp);
-            //return data;
         }
-        //setting the microcontroller turn the cool/heat relays
         public IActionResult TempSeting()
         {
             var tmpset = db.TempReadings.OrderByDescending(x => x.Id);
@@ -88,5 +76,11 @@ namespace DiplomenProekt.Controllers
             return View(model);
 
         }
+
     }
+
 }
+
+
+
+        

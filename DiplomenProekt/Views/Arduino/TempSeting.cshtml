@@ -1,33 +1,13 @@
-﻿@*
-    /*
-    Add temp of last record
-    add 2 btns Heat and Cool
-    (setting the temperature with the 2 btns)
-    */
-*@
-@model TempReadingViewModel
+﻿@model TempReadingViewModel
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-<div class="container-xl">100% wide until extra large breakpoint
-<h1> Here is your temperature control panel:</h1>
-<hr />
+<div class="container-xl">
+    <h1> Here is your temperature control panel:</h1>
+    <hr class="lineColor"/>
     <h4>Temperature of save here is the last recorded temperature: @Model.ReadedTemper</h4>
     <h5>Recorded at: @Model.RecordTime</h5>
-    <button  asp-controller="Arduino" asp-action="HeatButton" type="button" class="btn btn-danger">Heat </button>
-    <button type="button" class="btn btn-primary" OnClick="Cool()">Cool </button>
-
+    <button type="button" class="btn btn-danger" asp-controller="Arduino" asp-action="HeatButton">Heat</button>
+    <button type="button" class="btn btn-primary" asp-controller="Arduino" asp-action="CoolButton">Cool</button>
 </div>
-<script type="text/javascript">
-    function Heat() {
-        console.log("Heat function called");
-    }
-           
-          function Cool() {
-        $.ajax({
-            type: "GET",
-            url: "Arduino/Cool"           
-        });
-</script>
-
