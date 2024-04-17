@@ -48,15 +48,15 @@ namespace DiplomenProekt.Controllers
             return View();
         }
 
-        public IActionResult HeatButton(int data)
+        public IActionResult HeatButton(string data)
         {
-            data=1;
+            data="Heat";
             return Ok(data);
         }
-        public IActionResult CoolButton(int data)
+        public IActionResult CoolButton(string data)
         {
-            data = 0;
-            return Ok();
+            data = "Cool";
+            return Ok(data);
         }
         public string GetChartData()
         {
