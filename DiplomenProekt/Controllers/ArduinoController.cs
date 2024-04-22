@@ -17,7 +17,8 @@ namespace DiplomenProekt.Controllers
             this.db = db;
             this.webHostEnvironment = webHostEnvironment;
         }
-        
+        //Arduino sends the data via GET request
+        //Then we save the records in the DB
         [HttpGet]
         public IActionResult Create(double arduino)
         {
@@ -31,6 +32,8 @@ namespace DiplomenProekt.Controllers
             db.SaveChanges();
             return Ok();
         }
+        //After we save the records, we use mainly the DB
+        //to make different CRUD operations
         public IActionResult Read()
         {
             var arduino = arduinoService.GetTemperaturesOfLastNReadings(7);
@@ -43,11 +46,14 @@ namespace DiplomenProekt.Controllers
             }).ToList();
             return View(model);
         }
+        //Thats the action for the view file
+        //Where we see the bar chart
         public IActionResult TempDateChart()
         {
             return View();
         }
-
+        //By this action we send "adress data" to the arduino
+        //and then arduino decides to turn heat or cool realy
         public IActionResult HeatButton(string data)
         {
             data="Heat";
@@ -58,6 +64,20 @@ namespace DiplomenProekt.Controllers
             data = "Cool";
             return Ok(data);
         }
+        //With this action we set on the screen only the last record of the DB
+        public IActionResult TempSeting()
+        {
+            var arduino = arduinoService.GetTemperaturesOfLastNReadings(1);
+
+            var model = arduino.Select(a => new TempReadingViewModel
+            {
+                //Id = a.Id,
+                ReadedTemper = a.ReadedTemp,
+                RecordTime = a.RecTime
+            }).FirstOrDefault();
+            return View(model);
+        }
+        //That's method for the chart view where we make the data to JSON 
         public string GetChartData()
         {
             
@@ -65,18 +85,6 @@ namespace DiplomenProekt.Controllers
             List<double> temp = db.TempReadings.OrderByDescending(x => x.RecTime).Take(7).Select(r => r.ReadedTemp).ToList();
              return JsonConvert.SerializeObject(new { label, temp });
         }
-        public IActionResult TempSeting()
-        {
-            var tmpset = db.TempReadings.OrderByDescending(x => x.Id);
-            var model = tmpset.Select(t => new TempReadingViewModel
-            {
-                ReadedTemper = t.ReadedTemp,
-                RecordTime = t.RecTime
-            }).FirstOrDefault();    
-            return View(model);
-
-        }
-
     }
 
 }
