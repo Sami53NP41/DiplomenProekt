@@ -2,11 +2,15 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
+<form method="post">
 <div class="container-xl">
+    
     <h1> Here is your temperature control panel:</h1>
     <hr class="lineColor"/>
     <h4>Temperature of save here is the last recorded temperature: @Model.ReadedTemper</h4>
     <h5>Recorded at: @Model.RecordTime</h5>
-    <button type="button" class="btn btn-danger" asp-controller="Arduino" asp-action="HeatButton">Heat <i class="fa fa-regular fa-sun"></i></button>
-    <button type="button" class="btn btn-primary" asp-controller="Arduino" asp-action="CoolButton">Cool <i class="fa fa-solid fa-snowflake"></i></button>
+        <button type="button" class="btn btn-danger" asp-controller="Arduino" asp-action="HeatButton">Heat <i class="fa fa-regular fa-sun"></i></button>
+        <button type="button" class="btn btn-primary" asp-controller="Arduino" asp-action="CoolButton">Cool <i class="fa fa-solid fa-snowflake"></i></button>
+        <button type="button" class="btn btn-warning" asp-controller="Arduino" asp-action="DeleteRecords">Delete Old Records</button>
 </div>
+</form>

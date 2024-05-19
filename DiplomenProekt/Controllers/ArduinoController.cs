@@ -22,14 +22,21 @@ namespace DiplomenProekt.Controllers
         [HttpGet]
         public IActionResult Create(double arduino)
         {
-
-            var tmpRng = new TempReading
+            double tmp =0.2;
+            if (arduino > tmp || arduino < tmp)
             {
-                RecTime = DateTime.UtcNow,
-                ReadedTemp = arduino
-            };
-            db.Add(tmpRng);
-            db.SaveChanges();
+                var tmpRng = new TempReading
+                {
+                    RecTime = DateTime.UtcNow,
+                    ReadedTemp = arduino
+                };
+                db.Add(tmpRng);
+                db.SaveChanges();
+            }
+            else
+            { 
+            // DoNothing.Magic()
+            }
             return Ok();
         }
         //After we save the records, we use mainly the DB
@@ -54,14 +61,18 @@ namespace DiplomenProekt.Controllers
         }
         //By this action we send "adress data" to the arduino
         //and then arduino decides to turn heat or cool realy
+
+        [HttpPost]
         public IActionResult HeatButton(string data)
         {
-            data="Heat";
+            data="H";
             return Ok(data);
         }
+        [HttpPost]
+
         public IActionResult CoolButton(string data)
         {
-            data = "Cool";
+            data = "C";
             return Ok(data);
         }
         //With this action we set on the screen only the last record of the DB
@@ -71,7 +82,6 @@ namespace DiplomenProekt.Controllers
 
             var model = arduino.Select(a => new TempReadingViewModel
             {
-                //Id = a.Id,
                 ReadedTemper = a.ReadedTemp,
                 RecordTime = a.RecTime
             }).FirstOrDefault();
@@ -84,6 +94,14 @@ namespace DiplomenProekt.Controllers
             List<string> label = db.TempReadings.OrderByDescending(x => x.RecTime).Take(7).Select(r => r.RecTime.ToString("dd.MM.yyyy [HH:mm]")).ToList();
             List<double> temp = db.TempReadings.OrderByDescending(x => x.RecTime).Take(7).Select(r => r.ReadedTemp).ToList();
              return JsonConvert.SerializeObject(new { label, temp });
+        }
+        public IActionResult DeleteRecords(DateTime date) 
+        {
+            date = new DateTime(2024, 4, 30);
+            var recordsToDelete = db.TempReadings.Where(x => x.RecTime < date);
+            db.Remove(recordsToDelete);
+            db.SaveChanges();
+            return Ok();
         }
     }
 

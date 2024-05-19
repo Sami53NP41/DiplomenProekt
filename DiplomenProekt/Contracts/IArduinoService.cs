@@ -6,6 +6,7 @@ namespace DiplomenProekt
     public interface IArduinoService
     {
         List<TempReading> GetTemperaturesOfLastNReadings(int v);
-        void RecordNewTemperature(TempReading tmpRng);
+
+        void DeleteRecordsAfterMonth(DateTime date);
     }
 }

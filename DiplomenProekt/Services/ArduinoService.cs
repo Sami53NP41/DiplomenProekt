@@ -20,10 +20,11 @@ namespace DiplomenProekt
         {
             return db.TempReadings.OrderByDescending(x => x.Id).Take(count).ToList();
         }
-
-        public void RecordNewTemperature(TempReading tmpRng)
+        public void DeleteRecordsAfterMonth(DateTime date)
         {
-            throw new NotImplementedException();
+           
         }
+
+       
     }
 }
