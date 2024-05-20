@@ -6,6 +6,6 @@
         public DateTime RecordTime { get; set; }
         public double ReadedTemper { get; set; }
 
-        public double temperatureCheck;
+        public DateTime OldRecords;
     }
 }

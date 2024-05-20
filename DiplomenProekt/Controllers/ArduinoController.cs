@@ -95,11 +95,10 @@ namespace DiplomenProekt.Controllers
             List<double> temp = db.TempReadings.OrderByDescending(x => x.RecTime).Take(7).Select(r => r.ReadedTemp).ToList();
              return JsonConvert.SerializeObject(new { label, temp });
         }
-        public IActionResult DeleteRecords(DateTime date) 
-        {
-            date = new DateTime(2024, 4, 30);
-            var recordsToDelete = db.TempReadings.Where(x => x.RecTime < date);
-            db.Remove(recordsToDelete);
+        public IActionResult DeleteRecords(TempReadingViewModel model) 
+        {                   
+            var recordsToDelete = db.TempReadings.Where(x => x.RecTime < model.OldRecords);
+            db.TempReadings.RemoveRange(recordsToDelete);
             db.SaveChanges();
             return Ok();
         }
