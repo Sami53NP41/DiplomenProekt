@@ -4,6 +4,9 @@
         <canvas id="barChart" width="100" height="110" style="width:200px; height:110px;"></canvas>
     </div>
 </div>
+<div style="float:right; margine-bottom:410px;">
+    <img src="~/imgs/TempChart.png" alt="" width="400" height="auto">
+</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
@@ -21,7 +24,7 @@
             // var _data = ;//[{ReadedTemp:34,RecTime:13:43}]
             var _labels = data["label"];
             var _Date = data["temp"];
-            var colors = ["Blue", "Blue", "Blue", "Blue", "Blue", "Blue"];
+            var colors = ["Blue", "Red", "Green", "Blue", "Red", "Green"];
 
             new Chart(barChart,
                 {
